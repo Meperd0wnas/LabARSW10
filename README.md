@@ -17,6 +17,7 @@
 ## desplegamos
 
 ![alt text](images/despliegue.png)
+![alt text](image.png)
 
 
 **Preguntas**
