@@ -17,7 +17,12 @@
 ## desplegamos
 
 ![alt text](images/despliegue.png)
-![alt text](image.png)
+
+![alt text](images/despliegue2.png)
+
+## probamos
+
+![alt text](images/prueba.png)
 
 
 **Preguntas**
