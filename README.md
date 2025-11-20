@@ -7,6 +7,17 @@
 
 ### Parte 0 - Entendiendo el escenario de calidad
 
+## creamos 
+![alt text](images/creacion.png)
+
+## instalamos la extencion para visual
+
+![alt text](images/extencion.png)
+
+## desplegamos
+
+![alt text](images/despliegue.png)
+
 
 **Preguntas**
 
