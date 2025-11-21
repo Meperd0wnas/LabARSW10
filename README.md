@@ -24,6 +24,14 @@
 
 ![alt text](images/prueba.png)
 
+![alt text](images/prueba2.png)
+
+
+### Modificamos la coleción de POSTMAN con NEWMAN de tal forma que pueda enviar 10 peticiones concurrentes.
+
+![alt text](images/run.png)
+
+![alt text](image.png)
 
 **Preguntas**
 

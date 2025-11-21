@@ -1,0 +1,26 @@
+{
+  "info": {
+    "name": "Fibonacci Collection",
+    "_postman_id": "fibonacci-test-001",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Fibonacci Request",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"nth\": 10 }"
+        },
+        "url": "https://fuctionprojectfibonacci-ehbrabaubhfebgdg.eastus2-01.azurewebsites.net/api/Fibonacci"
+      }
+    }
+  ]
+}
