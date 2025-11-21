@@ -8,48 +8,47 @@
 
 # Parte 0 – Entendiendo el escenario de calidad
 
-## Creación de recursos
+## 1.Creación de recursos
 
 ![Creación de recursos](images/creacion.png)
 
-## Instalación de la extensión para Visual Studio Code
+## 2.Instalación de la extensión para Visual Studio Code
 
 ![Instalación extensión VSCode](images/extencion.png)
 
-## Despliegue de la función
+## 3.Despliegue de la función
 
 ![Despliegue 1](images/despliegue.png)  
 ![Despliegue 2](images/despliegue2.png)
 
-## Pruebas de funcionamiento
+## 4.Pruebas de funcionamiento
 
 ![Prueba 1](images/prueba.png)  
 ![Prueba 2](images/prueba2.png)
 
 ---
 
-# Ejecución concurrente con Newman
+# 5.Ejecución concurrente con Newman
 
-Se modificó la colección de Postman para permitir el envío de **10 peticiones concurrentes** utilizando Newman.
+Se modificó la colección de Postman para permitir el envío de 10 peticiones concurrentes utilizando Newman.
 
 ![Ejecución Newman](images/run.png)  
-![Resultado](image.png)
 
 ---
 
 # Nueva función: Fibonacci recursivo con memoization (Node.js)
 
-## Código (ejemplo)
-> (Inserta aquí el archivo o snippet de la función si lo deseas)
+![alt text](images/codigo.png)
+
 
 ---
 
 ## Conclusiones
 
-Al probar la función recursiva con memoization con los valores **1000**, **10000** y **50000**, se observó lo siguiente:
+Al probar la función recursiva con memoization con los valores 1000, 10000 y 50000, se observó lo siguiente:
 
-- Para **1000** y **10000** el tiempo de ejecución fue prácticamente inmediato gracias a que cada valor se calcula una sola vez y luego se reutiliza mediante memoization.
-- Para **50000** la función sigue siendo más eficiente que la recursiva tradicional, pero puede presentar riesgos como:
+- Para 1000 y 10000 el tiempo de ejecución fue prácticamente inmediato gracias a que cada valor se calcula una sola vez y luego se reutiliza mediante memoization.
+- Para 50000 la función sigue siendo más eficiente que la recursiva tradicional, pero puede presentar riesgos como:
   - Desbordamiento de pila (stack overflow) por la profundidad de la recursión.
   - Alto consumo de memoria por el tamaño de los números y la tabla de memoization.
   - Limitaciones del motor de JavaScript (ausencia de optimización de recursión en cola).
@@ -178,7 +177,7 @@ Se cobra por:
 
 ---
 
-## 8. Informe (resumen)
+## 8. Informe
 
 Un Azure Function permite ejecutar lógica sin administrar servidores, aprovechando la arquitectura serverless para escalar automáticamente. La memoization mejora el rendimiento del cálculo de Fibonacci, pero puede verse limitada por la recursión y el consumo de memoria. La elección del plan (Consumption, Premium o App Service) afecta costos, rendimiento y características (escalabilidad, cold start, tiempo máximo de ejecución). El Storage Account es obligatorio porque soporta internamente la Function App.
 
