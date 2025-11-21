@@ -1,6 +1,6 @@
-# Escuela Colombiana de Ingeniería  
-## Arquitecturas de Software - ARSW  
-### Escalamiento en Azure con Máquinas Virtuales, Scale Sets y Service Plans  
+# Escuela Colombiana de Ingeniería
+## Arquitecturas de Software - ARSW
+### Escalamiento en Azure con Máquinas Virtuales, Scale Sets y Service Plans
 
 **Autor:** Daniel Ricardo Ruge Gómez
 
@@ -10,23 +10,21 @@
 
 ## Creación de recursos
 
-![alt text](images/creacion.png)
+![Creación de recursos](images/creacion.png)
 
 ## Instalación de la extensión para Visual Studio Code
 
-![alt text](images/extencion.png)
+![Instalación extensión VSCode](images/extencion.png)
 
 ## Despliegue de la función
 
-![alt text](images/despliegue.png)
-
-![alt text](images/despliegue2.png)
+![Despliegue 1](images/despliegue.png)  
+![Despliegue 2](images/despliegue2.png)
 
 ## Pruebas de funcionamiento
 
-![alt text](images/prueba.png)
-
-![alt text](images/prueba2.png)
+![Prueba 1](images/prueba.png)  
+![Prueba 2](images/prueba2.png)
 
 ---
 
@@ -34,182 +32,153 @@
 
 Se modificó la colección de Postman para permitir el envío de **10 peticiones concurrentes** utilizando Newman.
 
-![alt text](images/run.png)
-
-![alt text](image.png)
+![Ejecución Newman](images/run.png)  
+![Resultado](image.png)
 
 ---
 
 # Nueva función: Fibonacci recursivo con memoization (Node.js)
 
-
-
-## Conclusiones
-
-Al probar la función recursiva con memoization con los valores 1000, 10000 y 50000, se observó que para 1000 y 10000 el tiempo de ejecución fue prácticamente inmediato, gracias a que cada valor se calcula una sola vez y luego se reutiliza mediante memoization.
-
-Para el caso de 50000, la función sigue siendo más eficiente que la recursiva tradicional, pero puede presentar riesgos de desbordamiento de pila o un consumo elevado de memoria debido a la profundidad de las llamadas recursivas y al tamaño de los números manejados.
+## Código (ejemplo)
+> (Inserta aquí el archivo o snippet de la función si lo deseas)
 
 ---
 
-## Preguntas
+## Conclusiones
 
-### 1. ¿Qué es un Azure Function?
+Al probar la función recursiva con memoization con los valores **1000**, **10000** y **50000**, se observó lo siguiente:
 
-Azure Function es un servicio de Microsoft Azure que permite ejecutar código sin necesidad de administrar servidores, utilizando un modelo basado en eventos. Azure se encarga de:
+- Para **1000** y **10000** el tiempo de ejecución fue prácticamente inmediato gracias a que cada valor se calcula una sola vez y luego se reutiliza mediante memoization.
+- Para **50000** la función sigue siendo más eficiente que la recursiva tradicional, pero puede presentar riesgos como:
+  - Desbordamiento de pila (stack overflow) por la profundidad de la recursión.
+  - Alto consumo de memoria por el tamaño de los números y la tabla de memoization.
+  - Limitaciones del motor de JavaScript (ausencia de optimización de recursión en cola).
 
-- Asignar máquinas  
-- Escalar automáticamente  
-- Ejecutar el código bajo demanda  
-- Cobrar solo por el uso real  
+---
 
-### 2. ¿Qué es serverless?
+# Preguntas
 
-Serverless es un modelo de computación donde no administras servidores directamente. Implica que:
+## 1. ¿Qué es un Azure Function?
 
-- No configuras hardware  
-- No haces mantenimiento  
-- No pagas por tiempo ocioso  
-- El proveedor escala automáticamente  
+Un Azure Function es un servicio *serverless* que permite ejecutar código sin necesidad de administrar servidores. Azure se encarga del aprovisionamiento, el escalado automático y la infraestructura necesaria. Las funciones se ejecutan bajo demanda y solo se paga por el tiempo real de uso.
 
-Las Azure Functions operan bajo este modelo.
+---
 
-### 3. ¿Qué es el runtime y qué implica seleccionarlo?
+## 2. ¿Qué es serverless?
 
-El runtime es el entorno de ejecución donde correrán las funciones, como:
+Serverless es un modelo de computación donde el desarrollador no administra servidores directamente. Implica:
 
-- Node.js  
-- .NET  
-- Python  
-- Java  
-- PowerShell  
+- No configurar hardware.
+- No realizar mantenimiento.
+- No pagar por tiempo ocioso.
+- Escalamiento automático administrado por el proveedor.
 
-Seleccionarlo implica que:
+Azure Functions es un ejemplo de una arquitectura totalmente serverless.
 
-- Defines el lenguaje y su versión para la Function App.  
-- Todos los archivos generados deben seguir ese formato.  
-- Cambiarlo después no es posible (requiere crear otra Function App).  
+---
 
-### 4. ¿Por qué es necesario crear un Storage Account junto con una Function App?
+## 3. ¿Qué es el runtime y qué implica seleccionarlo al crear el Function App?
 
-Porque Azure Functions depende del Storage para operar. Se usa para:
+El *runtime* es el entorno en el que se ejecutarán las funciones. Algunos ejemplos: Node.js, .NET, Python, Java, PowerShell.
 
-- Guardar logs  
-- Manejar triggers (colas, timers, blobs)  
-- Sincronizar funciones durante escalamiento  
-- Registrar estados internos  
+Seleccionarlo implica definir:
 
-Sin un Storage Account, una Function App no puede crearse ni funcionar.
+- El lenguaje y la versión permitida para esa Function App.
+- La estructura y archivos que tendrán las funciones.
+- Que todas las funciones dentro del mismo Function App deben usar ese runtime.
+- Que no puede cambiarse después de creado el Function App.
 
-### 5. Tipos de planes para una Function App
+---
 
-#### A) Consumption Plan (por consumo)
+## 4. ¿Por qué es necesario crear un Storage Account junto con un Function App?
 
-**Ventajas:**
+Azure Functions depende del Storage Account para su operación interna. Se utiliza para:
 
-- Más económico: pagas solo por ejecución.  
-- Autoescalado completo.  
-- Ideal para cargas irregulares.  
+- Almacenar logs y diagnósticos.
+- Manejar triggers (colas, timers, blobs).
+- Coordinar el escalado entre múltiples instancias.
+- Guardar configuraciones internas y estados temporales.
 
-**Desventajas:**
+Sin un Storage Account, la Function App no puede crearse ni ejecutarse.
 
-- Cold start.  
-- Tiempo máximo por ejecución (10–30 min).  
-- No controlas infraestructura.  
+---
 
-#### B) Premium Plan
+## 5. ¿Cuáles son los tipos de planes para un Function App? ¿En qué se diferencian? Ventajas y desventajas
+
+### 5.1 Consumption Plan
+**Descripción:** Plan serverless por excelencia.
 
 **Ventajas:**
-
-- Sin cold start.  
-- Tiempo de ejecución ilimitado.  
-- Redes privadas y escalado avanzado.  
+- Pago solo por ejecución.
+- Autoescalado completo.
+- Hasta 1 millón de ejecuciones gratuitas por mes.
 
 **Desventajas:**
+- Tiempo de arranque en frío (cold start).
+- Límite de tiempo por ejecución (10 min, hasta 30 con configuración).
 
-- Mayor costo.  
-- Pagas incluso sin tráfico.  
-
-#### C) App Service Plan
+### 5.2 Premium Plan
+**Descripción:** Instancias pre-calientes y siempre activas.
 
 **Ventajas:**
-
-- Sin límites de tiempo.  
-- Funciones corren en una VM dedicada.  
-- Útil si ya existe un App Service.  
+- No hay cold start.
+- Ejecuciones sin límite de tiempo.
+- Soporta redes privadas (VNet Integration).
 
 **Desventajas:**
+- Más costoso que Consumption.
+- Se paga al menos 1 instancia aunque no haya tráfico.
 
-- No es serverless.  
-- Pagas 24/7.  
-- Mayor mantenimiento.  
+### 5.3 App Service Plan
+**Descripción:** Funciones corren sobre una máquina virtual dedicada.
 
-### 6. ¿Por qué la memoization falla o no funciona correctamente?
+**Ventajas:**
+- Sin límites de tiempo de ejecución.
+- Permite usar siempre la misma máquina.
+- Útil si ya se usa App Service para otros servicios.
 
-La memoization de Fibonacci puede fallar por:
+**Desventajas:**
+- No es serverless.
+- Se paga 24/7 independientemente del uso.
+- Mayor administración y mantenimiento.
 
-**A) Recursión demasiado profunda**  
-Para n = 50 000 existe riesgo de stack overflow.
+---
 
-**B) Números muy grandes**  
-Fibonacci(50k) tiene más de 10 000 dígitos. BigInt consume mucha memoria.
+## 6. ¿Por qué la memoization puede fallar o no funcionar correctamente?
 
-**C) Uso excesivo de memoria**  
-Guardar miles de BigInts puede consumir cientos de MB.
+En valores muy altos (p. ej. 50 000) puede fallar por:
 
-**D) JavaScript no optimiza recursión profunda**  
-No usa tail-call optimization en Azure Functions.
+- Recursión demasiado profunda → stack overflow.
+- Números Fibonacci grandes requieren *BigInt*, que consume mucha memoria.
+- La tabla de memoization puede almacenar decenas de miles de valores grandes.
+- JavaScript no cuenta con optimización de recursión en cola (TCO).
 
-### 7. ¿Cómo funciona la facturación de una Function App?
+---
 
-Depende del plan elegido.
+## 7. ¿Cómo funciona el sistema de facturación de las Function App?
 
-#### Consumption Plan
+Depende del plan:
+
+### 7.1 Consumption Plan
 Se cobra por:
+- Número de ejecuciones.
+- Tiempo de ejecución.
+- Memoria utilizada.
 
-- Número de ejecuciones  
-- Tiempo de ejecución  
-- Memoria consumida  
+Incluye 1 millón de ejecuciones gratis al mes.
 
-Incluye 1 millón de ejecuciones gratis por mes.
+### 7.2 Premium Plan
+Se cobra por:
+- Cantidad de instancias pre-calentadas.
+- Tiempo de ejecución adicional.
 
-#### Premium Plan
+### 7.3 App Service Plan
+Se cobra por:
+- La máquina virtual dedicada, independiente del uso.
 
-- Se cobra por instancias precalentadas por hora.  
-- También por tiempo de ejecución extra.  
+---
 
-#### App Service Plan
+## 8. Informe (resumen)
 
-- Se cobra por la VM completa, sin importar cuántas funciones corran.  
-
-### ¿Qué es un Azure Function?
-
-Servicio serverless que ejecuta código bajo demanda sin administrar servidores. Azure maneja aprovisionamiento, escalamiento y mantenimiento.
-
-### ¿Qué es serverless?
-
-Un modelo donde la infraestructura está completamente abstraída y el usuario paga solo por ejecución real. El proveedor escala según la carga automática.
-
-### ¿Qué es el runtime?
-
-El entorno donde se ejecutan las funciones (Node.js, .NET, Python, Java). Todas las funciones dentro de una Function App deben usar ese runtime.
-
-### ¿Por qué se necesita un Storage Account?
-
-Es obligatorio para logs, triggers, sincronización de escalado y almacenamiento interno. Sin él, una Function App no puede funcionar.
-
-### Tipos de planes
-
-- **Consumption Plan:** pago por uso, autoescalado, posibles cold starts.  
-- **Premium Plan:** instancias calientes, sin límite de tiempo, mayor costo.  
-- **App Service Plan:** VM dedicada, no serverless, pagas 24/7.  
-
-### ¿Por qué puede fallar la memoization?
-
-Por recursión profunda, uso elevado de BigInt, demasiada memoria y falta de optimización del lenguaje.
-
-### Facturación
-
-- **Consumption:** cobra por ejecución, tiempo y memoria.  
-- **Premium/App Service:** cobra por instancias o máquinas completas.  
+Un Azure Function permite ejecutar lógica sin administrar servidores, aprovechando la arquitectura serverless para escalar automáticamente. La memoization mejora el rendimiento del cálculo de Fibonacci, pero puede verse limitada por la recursión y el consumo de memoria. La elección del plan (Consumption, Premium o App Service) afecta costos, rendimiento y características (escalabilidad, cold start, tiempo máximo de ejecución). El Storage Account es obligatorio porque soporta internamente la Function App.
 
