@@ -182,10 +182,6 @@ Incluye 1 millón de ejecuciones gratis por mes.
 
 - Se cobra por la VM completa, sin importar cuántas funciones corran.  
 
----
-
-## Informe — versión lista para entrega
-
 ### ¿Qué es un Azure Function?
 
 Servicio serverless que ejecuta código bajo demanda sin administrar servidores. Azure maneja aprovisionamiento, escalamiento y mantenimiento.
